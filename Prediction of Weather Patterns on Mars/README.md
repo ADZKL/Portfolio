@@ -1,1 +1,1 @@
-In this project I aim to use both classification and regression to predict weather patterns on Mars showing my adept skills at using thr two main types of supervised machine learning techniques both showing completely different results which make my model as intepretable as possible
+In this project I aim to use both classification and regression to predict weather patterns on Mars showing my adept skills at using the two main types of supervised machine learning techniques both showing completely different results which make my model as intepretable as possible
