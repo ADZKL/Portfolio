@@ -1,0 +1,1 @@
+In this project I tackle the problem of detecting Diabetuc Retinopathy (a form of diabetes in the eyes) using a very unique and unconventional method using 1D Convulutional Neural Network to demonstrate my understanding of using machine learning algorithims in ways which would be out of the norm
