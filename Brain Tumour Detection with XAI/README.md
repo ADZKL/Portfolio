@@ -1,1 +1,1 @@
-
+In this project I aim for the detection of brain tumours and visualising these results for possible clinical usage using explainable AI techniques like Grad-Cam and LIME whilst using various machine learning algorithims such as Support Vector Machine, K-Nearest Neighbours, Random Forest and Convulutional Neural Network across multiple dataset sizes (100, 500, 5000).   
