@@ -1,3 +1,4 @@
+# Import necessary libraries for data manipulation, visualization, and machine learning
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt

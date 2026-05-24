@@ -1,18 +1,18 @@
-import streamlit as st
-import cv2
-import numpy as np
-import tensorflow as tf
-import joblib
-import matplotlib.pyplot as plt
-from lime import lime_image
-from skimage.segmentation import mark_boundaries
+import streamlit as st # For building the interactive web application
+import cv2 # OpenCV for image processing and manipulation
+import numpy as np # For numerical operations and array handling
+import tensorflow as tf # For loading the CNN model and performing predictions
+import joblib # For loading the Random Forest model
+import matplotlib.pyplot as plt # For visualizing the Grad-CAM heatmaps
+from lime import lime_image # For generating LIME explanations for the Random Forest model
+from skimage.segmentation import mark_boundaries # For visualizing LIME super-pixels on the image
 
-
+# Streamlit App Configuration
 st.set_page_config(page_title="KoS3 Clinical AI", layout="wide")
 st.title("🧠 KoS3: Transparent Brain Tumor Diagnostics")
 st.markdown("Upload a MRI scan to receive a diagnostic prediction and visual explanation.")
 
-
+# Caching model loading to speed up the app and avoid reloading on every interaction
 @st.cache_resource
 def load_models():
     cnn = tf.keras.models.load_model('kos3_cnn.keras')
@@ -26,14 +26,14 @@ except Exception as e:
     st.error("⚠️ Could not load models. Did you run the training script and save them?")
     st.stop()
 
-
+# Function to generate Grad-CAM heatmap for the CNN model
 def generate_gradcam(img_array, model, last_conv_layer_name="last_conv_layer"):
     
     inputs = tf.keras.Input(shape=(64, 64, 1))
     x = inputs
     last_conv_output = None
     
-    
+    # Manually build the forward pass to capture the output of the last convolutional layer
     for layer in model.layers:
         x = layer(x)
         if layer.name == last_conv_layer_name:
@@ -59,7 +59,7 @@ def generate_gradcam(img_array, model, last_conv_layer_name="last_conv_layer"):
     heatmap = tf.maximum(heatmap, 0) / tf.math.reduce_max(heatmap)
     return heatmap.numpy()
 
-
+# Wrapper function for LIME to work with the Random Forest model
 def rf_predict_proba_wrapper(images):
     """LIME passes RGB images, but RF expects flattened grayscale 64x64."""
     batch_size = images.shape[0]
@@ -67,7 +67,7 @@ def rf_predict_proba_wrapper(images):
     flat_images = gray_images.reshape(batch_size, -1)
     return rf_model.predict_proba(flat_images)
 
-
+# Streamlit UI Layout
 sidebar = st.sidebar
 sidebar.header("Settings")
 model_choice = sidebar.radio("Select Diagnostic Engine:", ["Deep Learning (CNN + Grad-CAM)", "Classical ML (Random Forest + LIME)"])
