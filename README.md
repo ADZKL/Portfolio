@@ -1,2 +1,2 @@
 # Portfolio
-This is my portfolio containing all of my main projects that I have delved deep into to try to gain a better understanding of the bountiful world of Machine Learning and Artificial Intelligence.
+This is my portfolio containing all of my main projects that I have delved deep into to try to gain a better understanding of the bountiful world of Machine Learning, Artificial Intelligence and Computer Science in general. I have used a diverse amount of techniques and programming languages like Python and Java, I've also tackled different types of tasks to show my expertise in multiple areas ranging from machine learning to concurrent programming and distrubuted systems. 
